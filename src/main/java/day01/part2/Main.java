@@ -5,7 +5,7 @@ import java.util.*;
 
 public class Main {
 
-    public static final String inputFile = "input.txt";
+    public static final String inputFile = "inputs" + File.separator + "day1.txt";
     public static List<String> cypher = new ArrayList<>();
 
     public static void main(String[] args) {
