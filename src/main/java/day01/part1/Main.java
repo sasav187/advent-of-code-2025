@@ -1,3 +1,5 @@
+package day01.part1;
+
 import java.io.*;
 import java.util.*;
 
