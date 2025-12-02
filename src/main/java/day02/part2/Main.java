@@ -6,18 +6,18 @@ import java.io.*;
 public class Main {
 
     public static final String inputFile = "inputs" + File.separator + "day2.txt";
-    public static List<String> ranges = new ArrayList();
+    public static List<String> ranges = new ArrayList<>();
 
     public static void main(String[] args) {
 
         try (BufferedReader br = new BufferedReader(new FileReader(inputFile))) {
 
             String line = br.readLine();
-
-            String[] parts = line.split(",");
-
-            for (String part : parts) {
-                ranges.add(part);
+            if (line != null) {
+                String[] parts = line.split(",");
+                for (String part : parts) {
+                    ranges.add(part.trim());
+                }
             }
 
         } catch (Exception e) {
@@ -27,44 +27,52 @@ public class Main {
         long n = idFinder(ranges);
 
         System.out.println(n);
-
     }
 
     private static long idFinder(List<String> ranges) {
         long n = 0;
 
         for (String range : ranges) {
-
+            if (range.isBlank()) continue;
             String[] parts = range.split("-");
 
-            long num1 = Long.parseLong(parts[0]);
-            long num2 = Long.parseLong(parts[1]);
+            long start = Long.parseLong(parts[0].trim());
+            long end = Long.parseLong(parts[1].trim());
 
-            for (long i = num1; i <= num2; i++) {
+            for (long i = start; i <= end; i++) {
                 if (!isValid(i)) {
                     n += i;
-                } else {
-                    continue;
                 }
             }
-
         }
-
         return n;
     }
 
     private static boolean isValid(long number) {
+        String s = Long.toString(number);
+        int len = s.length();
 
-        String num = Long.toString(number);
+        for (int sub = 1; sub <= len / 2; sub++) {
+            if (len % sub != 0) {
+                continue;
+            }
 
-        if (num.length() % 2 == 0) {
+            String piece = s.substring(0, sub);
+            int repeats = len / sub;
 
-            String first = num.substring(0, num.length() / 2);
-            String second = num.substring(num.length() / 2);
+            boolean ok = true;
+            for (int k = 1; k < repeats; k++) {
+                int start = k * sub;
+                if (!s.substring(start, start + sub).equals(piece)) {
+                    ok = false;
+                    break;
+                }
+            }
 
-            return !first.equals(second);
+            if (ok && repeats >= 2) {
+                return false;
+            }
         }
-
         return true;
     }
 }
