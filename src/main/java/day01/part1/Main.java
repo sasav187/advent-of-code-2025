@@ -5,11 +5,11 @@ import java.util.*;
 
 public class Main {
 
-    public static final String inputFile = "day1.txt";
-    public static List<String> cypher = new ArrayList<>();
+    private static final String INPUT_FILE = "day1.txt";
+    private static List<String> cypher = new ArrayList<>();
 
     public static void main(String[] args) {
-        try (BufferedReader br = new BufferedReader(new FileReader(inputFile))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(INPUT_FILE))) {
 
             String line;
 
@@ -27,7 +27,7 @@ public class Main {
         System.out.println(n);
     }
 
-    public static int decrypt(List<String> cypher) {
+    private static int decrypt(List<String> cypher) {
         int n = 0;
         int start = 50;
 

@@ -5,12 +5,12 @@ import java.io.*;
 
 public class Main {
 
-    public static final String inputFile = "inputs" + File.separator + "day2.txt";
-    public static List<String> ranges = new ArrayList<>();
+    private static final String INPUT_FILE = "inputs" + File.separator + "day2.txt";
+    private static List<String> ranges = new ArrayList<>();
 
     public static void main(String[] args) {
 
-        try (BufferedReader br = new BufferedReader(new FileReader(inputFile))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(INPUT_FILE))) {
 
             String line = br.readLine();
             if (line != null) {
