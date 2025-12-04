@@ -1,4 +1,4 @@
-package day04.part1;
+package day04.part2;
 
 import java.util.*;
 import java.io.*;
@@ -34,13 +34,27 @@ public class Main {
 
         int total = 0;
 
-        for (int i = 0; i < rowCount; i++) {
-            for (int j = 0; j < colCount; j++) {
-                int neighbours;
-                if (diagram[i][j] == '@' && getNeighbours(i, j) < 4) {
-                    total++;
+        while (true) {
+            List<int[]> removable = new ArrayList<>();
+
+            for (int i = 0; i < rowCount; i++) {
+                for (int j = 0; j < colCount; j++) {
+                    int neighbours;
+                    if (diagram[i][j] == '@' && getNeighbours(i, j) < 4) {
+                        removable.add(new int[]{i, j});
+                    }
                 }
             }
+
+            if (removable.isEmpty()) {
+                break;
+            }
+
+            for (int[] cell : removable) {
+                diagram[cell[0]][cell[1]] = 'x';
+            }
+
+            total += removable.size();
         }
 
         System.out.println(total);
