@@ -18,11 +18,11 @@ public class Main {
     public static void main(String[] args) {
         List<Point> points = new ArrayList<>();
 
-        try (var reader = new BufferedReader(new FileReader(INPUT_FILE))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(INPUT_FILE))) {
 
             String line;
 
-            while ((line = reader.readLine()) != null) {
+            while ((line = br.readLine()) != null) {
 
                 String[] p = line.split(",");
 
@@ -31,6 +31,8 @@ public class Main {
                         Long.parseLong(p[1]),
                         Long.parseLong(p[2])
                 ));
+
+                br.close();
             }
         } catch (Exception e) {
             e.printStackTrace();
